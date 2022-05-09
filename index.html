@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | NFT preview card component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    /* font family used in some parts */
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      background-color: hsl(217, 54%, 11%);
+      width: 100%;
+      
+    }
+    div {
+      background-color: hsl(216, 50%, 16%);
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      border-radius: 0.5rem;
+      min-width: 20vw;
+      max-width: 20vw;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -35vh 0 0 -10vw;
+    }
+
+    .whole_section {
+      padding: 5%;
+      background-color: hsl(216, 50%, 16%);
+      border-radius: 0.5rem;
+      align-items: center;
+      position: relative;
+    }
+
+    .nft {
+      width: 100%;
+      height: 35vh;
+      border-radius: 0.5rem;
+      opacity: 1;
+    }
+
+    .overlay {
+      position: absolute;
+      opacity: 0;
+      transition: .5s ease;
+      transform: translate(0%, -100%);
+      -ms-transform: translate(0%, -100%);
+      width: fit-content;
+      height: fit-content;
+      border-radius: 0.5rem;
+      display: block;
+      background: none;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .whole_section:hover .overlay {
+      opacity: 1;
+    }
+
+    .whole_section:hover .nft {
+      opacity: 0.3;
+    }
+
+    .active {
+      width: 20vw;
+      height: 35vh;
+      border-radius: 0.5rem;
+      background-color: transparent;
+      opacity: 0.2;
+      background-color: hsl(178, 100%, 50%);
+      viewport-fit: 100;
+    }
+
+    .first_item {
+      color: hsl(0, 0%, 100%);
+      font-weight: 600;
+      font-family: 'Outfit', sans-serif;
+      margin-top: 3vh;
+      
+    }
+
+    .second_item {
+      color: hsl(215, 51%, 70%);
+      
+      font-size: 14px;
+      padding-top: 3vh;
+
+    }
+
+    .first_group {
+      justify-content: space-between;
+      display: flex;
+      flex-direction: row;
+      border-bottom: 5vh;
+      position: relative;
+      font-size: 12px;
+      font-family: 'Outfit', sans-serif;
+      object-fit: contain;
+    }
+
+    .ethereum {
+      background-color: hsl(216, 50%, 16%);
+      height: 0.75em;
+      width: auto;
+      padding-top: 0.5em;
+      display: inline-flex;
+    }
+
+    .third_item {
+      padding-top: 2vh;
+      align-items: center;
+      color: hsl(178, 100%, 50%);
+      font-weight: 600;
+      align-items: center;
+      width: 50%;
+    }
+
+    .clock {
+      background-color: hsl(216, 50%, 16%);
+      height: 0.75rem;
+      width: auto;
+    }
+
+    .fourth_item {
+      padding-top: 2vh;
+      width: 50%;
+      padding-left: 30%;
+      color: hsl(215, 51%, 70%);
+    }
+
+    .second_group {
+      padding-top: 2vh;
+      min-width: 20vw;
+      padding-bottom: 2vh;
+    }
+
+    hr {
+      border-top: 10px hsl(215, 51%, 70%);
+    }
+
+    .fifth_item {
+      display: flex;
+      flex-direction: row;
+      height: 1.6rem;
+      padding-top: 2vh;
+      color: hsl(215, 51%, 70%);
+    
+    }
+    .avatar {
+      background-color: hsl(216, 50%, 16%);
+      width: auto;
+      height: 1.5rem;
+      padding: 2px;
+      padding-right: 15px;
+      padding-left: 2px;
+    }
+
+    .fifth_item p {
+      padding-top: 2%;
+      width: 120px;
+      background-color: hsl(216, 50%, 16%);
+    }
+
+    .fifth_item i {
+      color: hsl(0, 0%, 100%);
+      padding-top: 2%;
+      width: 180px;
+      background-color: hsl(216, 50%, 16%);
+    }
+  
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+      margin-top: 98vh;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+
+    /* Added a media query to fit smaller screens. */
+    
+    @media screen and (max-width: 900px) {
+      .container {
+        min-width: 60vw;
+        top: 50%;
+        left: 48%;
+        margin: -33vh 0 0 -30vw;
+      }
+
+      .whole_section {
+        object-fit: contain;
+      }
+
+      .overlay {
+        transform: translate(0%, -100%);
+        -ms-transform: translate(0%, -100%);
+        width: 91%;
+      }
+    
+      .active {
+        width: 100%;
+      }
+       
+      .avatar {
+        padding-right: 5%;
+      }
+
+      .fifth_item p {
+        width: 150px;
+        align-items: center;
+      }
+
+      .fifth_item i {
+        width: 180px;
+        align-items: center;
+      }
+    }
+    @media screen and (max-width: 350px) {
+      .container {
+        min-width: 80vw;
+        top: 50%;
+        left: 46%;
+        margin: -33vh 0 0 -40vw;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="whole_section">
+      <img src="images/image-equilibrium.jpg" alt="Equilibrium" class="nft">
+      <div class="overlay">
+        <img src="images/icon-view.svg" alt="Active States" class="active" width="604" height="604"> 
+      </div>
+    
+    <div class="first_item"> Equilibrium #3429</div>
+
+    <div class="second_item"> Our Equilibrium collection promotes balance and calm.</div>
+    <div class="first_group">
+      <div class="third_item"><img src="images/icon-ethereum.svg" alt="Equilibrium" class="ethereum"> 0.041
+        ETH </div>
+
+      <div class="fourth_item"> <img src="images/icon-clock.svg" alt="Equilibrium" class="clock"> 3 days left </div>
+    </div>
+
+    <div class="second_group">
+      <hr>
+      <div class="fifth_item"> <img src="images/image-avatar.png" alt="Avatar" class="avatar">
+        <p>Creation of </p><i>
+          Jules Wyvern</i>
+      </div>
+    </div>
+    </div>
+  </div>
+</body>
+<footer>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#"><i>Osagie Ronald</i></a>.
+  </div>
+</footer>
+</html>
